@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  @apply box-content m-0 font-normal;
+}
+
+body {
+  @apply min-h-screen leading-relaxed;
+}

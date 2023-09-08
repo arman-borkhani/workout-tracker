@@ -9,5 +9,5 @@
 }
 
 body {
-  @apply min-h-screen leading-relaxed;
+  @apply min-h-screen leading-relaxed font-Poppins;
 }

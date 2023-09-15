@@ -40,6 +40,11 @@
           />
         </div>
         <BaseButton :loading="loading">Register</BaseButton>
+  
+        <p class="text-sm text-center text-gray-800 mt-6">
+          Already have an account? 
+          <router-link class="text-c-green" :to="{ name:'login' }">Login</router-link>
+        </p>
       </form>
     </div>
   </div>

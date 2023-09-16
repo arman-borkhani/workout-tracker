@@ -5,7 +5,7 @@
 *,
 *::before,
 *::after {
-  @apply box-content m-0 font-normal;
+  @apply box-border m-0 font-normal;
 }
 
 body {

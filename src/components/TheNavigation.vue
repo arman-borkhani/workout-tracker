@@ -10,7 +10,7 @@
           <router-link class="cursor-pointer p-2" :to="{ name: 'home' }">Home</router-link>
           <router-link class="cursor-pointer p-2" :to="{ name: '' }">Create</router-link>
           <router-link class="cursor-pointer p-2" :to="{ name: 'login' }">Login</router-link>
-          <li class="cursor-pointer p-2">Logout</li>
+          <li class="cursor-pointer p-2" @click="logout">Logout</li>
         </ul>
       </nav>
     </div>
@@ -19,4 +19,15 @@
 
 <script setup>
 import IconDumbbell from './icons/IconDumbbell.vue';
+import { supabase } from "../lib/supabaseClient";
+import { useRouter } from 'vue-router';
+
+// Setup ref to router
+const router = useRouter();
+
+// Logout function
+const logout = async () => {
+  await supabase.auth.signOut();
+  router.push({ name: 'home' });
+};
 </script>

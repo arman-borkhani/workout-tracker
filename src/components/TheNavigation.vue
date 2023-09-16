@@ -8,9 +8,9 @@
         </div>
         <ul class="flex gap-x-5">
           <router-link class="cursor-pointer p-2" :to="{ name: 'home' }">Home</router-link>
-          <router-link class="cursor-pointer p-2" :to="{ name: '' }">Create</router-link>
-          <router-link class="cursor-pointer p-2" :to="{ name: 'login' }">Login</router-link>
-          <li class="cursor-pointer p-2" @click="logout">Logout</li>
+          <router-link v-if="user" class="cursor-pointer p-2" :to="{ name: '' }">Create</router-link>
+          <router-link v-if="!user" class="cursor-pointer p-2" :to="{ name: 'login' }">Login</router-link>
+          <li v-if="user" class="cursor-pointer p-2" @click="logout">Logout</li>
         </ul>
       </nav>
     </div>
@@ -21,6 +21,11 @@
 import IconDumbbell from './icons/IconDumbbell.vue';
 import { supabase } from "../lib/supabaseClient";
 import { useRouter } from 'vue-router';
+import store from '../store/index';
+import { computed } from 'vue';
+
+// Get user from store
+const user = computed(() => { return store.state.currentUser });
 
 // Setup ref to router
 const router = useRouter();

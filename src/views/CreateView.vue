@@ -8,15 +8,15 @@
     </BaseAlert>
 
     <div class="p-8 flex items-start bg-c-light-green bg-opacity-10 rounded-md">
-      <form @submit.prevent="createWorkout" class="flex flex-col gap-y-5 w-full">
+      <form @submit.prevent="createWorkout" class="flex flex-col items-start gap-y-5 w-full">
         <h1 class="text-2xl text-gray-800">Recode Workout</h1>
 
-        <div class="flex flex-col">
+        <div class="flex flex-col w-full">
           <label for="workout-name" class="mb-1 text-sm text-gray-800">Workout Name</label>
           <input type="text" required class="p-2 text-gray-500 focus:outline-none" id="workout-name" v-model="workoutName">
         </div>
 
-        <div class="flex flex-col">
+        <div class="flex flex-col w-full">
           <label for="workout-type" class="mb-1 text-sm text-gray-800">Workout Type</label>
           <select id="workout-type" required class="h-11 p-2 text-gray-500 bg-white focus:outline-none" v-model="workoutType" @change="workoutChange">
             <option value="select-workout">Select Workout</option>
@@ -25,9 +25,9 @@
           </select>
         </div>
 
-        <div v-if="workoutType === 'strength'" class="flex flex-col gap-y-4">
+        <div v-if="workoutType === 'strength'" class="flex flex-col items-start gap-y-4">
           <div 
-            class="flex flex-col gap-x-6 gap-y-2 relative md:flex-row"
+            class="flex flex-col gap-x-6 gap-y-2 relative md:flex-row pr-8"
             v-for="(item, index) in exercises"
             :key="index"
           >
@@ -50,14 +50,19 @@
               <label for="strength-weight" class="mb-1 text-sm text-gray-800">Weight (Kg)</label>
               <input id="strength-weight" type="text" required class="p-2 text-gray-500 focus:outline-none w-full" v-model="item.weight">
             </div>
-            <IconBin @click="deleteExercise(item.id)" class="text-c-green absolute -left-6 top-0 cursor-pointer" width="20" height="20"></IconBin>
+
+            <IconBin @click="deleteExercise(item.id)" class="text-c-green absolute right-0 bottom-3 cursor-pointer" width="20" height="20"></IconBin>
           </div>
-          <BaseButton type="button" @click="addExercise" class="mt-6">Add Exercise</BaseButton>
+
+          <div @click="addExercise" class="text-c-green font-semibold cursor-pointer flex gap-1 items-center">
+            <IconAddCircle width="20" height="20"></IconAddCircle>
+            Add Exercise
+          </div>
         </div>
 
-        <div v-if="workoutType === 'cardio'" class="flex flex-col gap-y-4">
+        <div v-if="workoutType === 'cardio'" class="flex flex-col items-start gap-y-4">
           <div 
-            class="flex flex-col gap-x-6 gap-y-2 relative md:flex-row"
+            class="flex flex-col gap-x-6 gap-y-2 relative md:flex-row pr-8"
             v-for="(item, index) in exercises"
             :key="index"
           >
@@ -84,11 +89,16 @@
               <label for="cardio-pace" class="mb-1 text-sm text-gray-800">Pace (km/h)</label>
               <input id="cardio-pace" type="text" required class="p-2 text-gray-500 focus:outline-none w-full" v-model="item.pace">
             </div>
-            <IconBin @click="deleteExercise(item.id)" class="text-c-green absolute -left-6 top-0 cursor-pointer" width="20" height="20"></IconBin>
+
+            <IconBin @click="deleteExercise(item.id)" class="text-c-green absolute right-0 bottom-3 cursor-pointer" width="20" height="20"></IconBin>
           </div>
-          <BaseButton type="button" @click="addExercise" class="mt-6">Add Exercise</BaseButton>
+
+          <div @click="addExercise" class="text-c-green font-semibold cursor-pointer flex gap-1 items-center">
+            <IconAddCircle width="20" height="20"></IconAddCircle>
+            Add Exercise
+          </div>
         </div>
-        <BaseButton :loading="loading" type="submit" class="mt-6">Record Workout</BaseButton>
+        <BaseButton :loading="loading" type="submit" class="mt-3">Record Workout</BaseButton>
       </form>
     </div>
   </div>
@@ -97,6 +107,7 @@
 <script setup>
 import BaseButton from '../components/BaseButton.vue';
 import IconBin from '../components/icons/IconBin.vue';
+import IconAddCircle from '../components/icons/IconAddCircle.vue';
 import { supabase } from '../lib/supabaseClient';
 import { ref } from 'vue';
 import { uid } from 'uid';

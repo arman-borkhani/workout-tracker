@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import LoginView from '../views/LoginView.vue';
 import CreateView from '../views/CreateView.vue';
+import SingleView from '../views/SingleView.vue';
 
 
 const router = createRouter({
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/create',
       name: 'create',
       component: CreateView
+    },
+    {
+      path: "/workout/:workoutId",
+      name: "workout",
+      component: SingleView,
     },
   ]
 })

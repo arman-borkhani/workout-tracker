@@ -1,35 +1,8 @@
-# workout-tracker
+# Workout Tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+![screenshot](https://imageupload.io/ib/njrNES3RLokl8pq_1695365201.png)
 
-## Recommended IDE Setup
+Workout tracking app using Vue 3 (composition API), Supabase, and Tailwind CSS
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## Live demo
+Check the live demo here 👉  [https://arman-borkhani.github.io/vue-crud/](https://arman-borkhani.github.io/workout-tracker)

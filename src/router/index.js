@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import store from '../store/index';
 import HomeView from '../views/HomeView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import LoginView from '../views/LoginView.vue';
@@ -15,6 +16,7 @@ const router = createRouter({
       component: HomeView,
       meta: {
         title: "Home",
+        auth: false,
       },
     },
     {
@@ -23,6 +25,7 @@ const router = createRouter({
       component: RegisterView,
       meta: {
         title: "Register",
+        auth: false,
       },
     },
     {
@@ -31,6 +34,7 @@ const router = createRouter({
       component: LoginView,
       meta: {
         title: "Login",
+        auth: false,
       },
     },
     {
@@ -39,6 +43,7 @@ const router = createRouter({
       component: CreateView,
       meta: {
         title: "Create",
+        auth: true,
       },
     },
     {
@@ -47,6 +52,7 @@ const router = createRouter({
       component: SingleView,
       meta: {
         title: "Workout",
+        auth: false,
       },
     },
   ]
@@ -55,6 +61,20 @@ const router = createRouter({
 // Change document titles
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} | Workout Tracker`;
+  next();
+});
+
+// Route guard for auth routes
+router.beforeEach((to, from, next) => {
+  const user = store.state.currentUser;
+  if (to.matched.some((res) => res.meta.auth)) {
+    if (user) {
+      next();
+      return;
+    }
+    next({ name: "login" });
+    return;
+  }
   next();
 });
 

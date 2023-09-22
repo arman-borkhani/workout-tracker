@@ -12,29 +12,50 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: "Home",
+      },
     },
     {
       path: '/register',
       name: 'register',
-      component: RegisterView
+      component: RegisterView,
+      meta: {
+        title: "Register",
+      },
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginView
+      component: LoginView,
+      meta: {
+        title: "Login",
+      },
     },
     {
       path: '/create',
       name: 'create',
-      component: CreateView
+      component: CreateView,
+      meta: {
+        title: "Create",
+      },
     },
     {
       path: "/workout/:workoutId",
       name: "workout",
       component: SingleView,
+      meta: {
+        title: "Workout",
+      },
     },
   ]
-})
+});
+
+// Change document titles
+router.beforeEach((to, from, next) => {
+  document.title = `${to.meta.title} | Workout Tracker`;
+  next();
+});
 
 export default router;
